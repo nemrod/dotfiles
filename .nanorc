@@ -1,0 +1,71 @@
+set autoindent
+# set backup
+# set backupdir ""
+# set backwards
+# set brackets "'")}]>"
+# set casesensitive
+# set const
+# set cut
+# set fill -8
+set historylog
+# set morespace
+# set mouse
+# set multibuffer
+# set noconvert
+# set nofollow
+# set nohelp
+set nowrap
+# set operatingdir ""
+# set preserve
+# set punct ".?!"
+set quickblank
+# set quotestr "^([ 	]*[\|>:}#])+"
+# set quotestr "> "
+# set quotestr "(> )+"
+# set rebinddelete
+# set regexp
+# set smarthome
+set smooth
+#set speller "aspell -x -c"
+set suspend
+set tabsize 4
+# set tabstospaces
+# set tempfile
+# set view
+# set whitespace "  "
+
+syntax "c-file" "\.(c|C|cc|cpp|cxx|h|H|hh|hpp|hxx)$"
+#color red "\<[A-Z_]{2,}\>" 
+color green "\<(float|double|bool|char|int|short|long|sizeof|enum|void|static|const|struct|union|typedef|extern|signed|unsigned|inline)\>"
+color green "\<(class|namespace|template|public|protected|private|typename|this|friend|virtual|using|mutable|volatile|register|explicit)\>"
+color blue "\<(for|if|while|do|else|case|default|switch|goto|continue|break|return)\>"
+color yellow "\<(try|throw|catch|operator|new|delete)\>"
+color cyan "^[[:space:]]*#[[:space:]]*(define|undef|include|ifn?def|endif|elif|else|if|warning|error)"
+color magenta "'([^\]|(\\['abfnrtv\\]))'" "'\\(([0-7][0-7]?)|([0-3][0-7][0-7]))'" "'\\x[0-9A-Fa-f][0-9A-Fa-f]?'"
+color cyan "__attribute__[[:space:]]*\(\([^)]*\)\)" "__(asm|builtin|inline|restrict|typeof)__"
+color yellow "<[^= 	]*>" ""(\\.|[^\"])*""
+#color brightyellow start=""(\\.|[^\"])*\\[[:space:]]*$" end="^(\\.|[^\"])*""
+color brightblack "//.*"
+color brightblack start="/\*" end="\*/"
+
+syntax "HTML" "\.(html|htm)$"
+color blue start="<" end=">"
+color red "&[^;[[:space:]]]*;"
+
+syntax "php" "\.(php|inc)$"
+color brightblue "(.*)\("
+color blue "\$[a-zA-Z_0-9$]*|[=!<>]"
+color green "(var|class|function|echo|case|break|default|exit|switch|if|else|elseif|@|while)\s"
+color green "[.,{}();]"
+color brightred "('.*')|(\".*\")"
+color brightyellow "(#.*|//.*)$"
+color brightyellow start="/\*" end="\*/"
+color brightblue "(<\?(php)?|\?>)"
+color white start="\?>" end="<\?(php)?"
+
+syntax "python" "\.py$"
+color brightblue "def [a-zA-Z_0-9]+"
+color brightcyan "\<(and|assert|break|class|continue|def|del|elif|else|except|exec|finally|for|from|global|if|import|in|is|lambda|map|not|or|pass|print|raise|return|try|while)\>"
+color brightgreen "([\"']).*?[^\\]\1"
+color brightgreen start="\"\"\"" end="\"\"\""
+color brightred "#.*$"

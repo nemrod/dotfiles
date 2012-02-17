@@ -4,6 +4,13 @@ set encoding=utf-8
 
 set tabstop=4
 set shiftwidth=4
+set autoindent
+set cindent
+set noexpandtab
+filetype plugin indent on
+
+syntax on
+" Pathogen?
 
 set nofoldenable
 set foldmethod=indent
@@ -33,12 +40,6 @@ set wildmenu
 set wildmode=list:longest,full
 
 "set tags=tags;/
-"map <Tab> ==
-
-set cindent
-syntax on
-" Pathogen?
-filetype plugin indent on
 
 set backspace=indent,eol,start
 set scrolloff=3
@@ -50,12 +51,14 @@ set visualbell
 set ttyfast
 set number
 set ruler
-set laststatus=2
 "set relativenumber
 "set undofile
 set background=light
 set mouse=r
 set modelines=0
+
+set laststatus=2
+set statusline=%F\ %y%m%=\ %{strlen(&fenc)?'['.&fenc.']':''}[%{&ff}]\ %c%V\ %l\,%L\ %P
 
 " Some settings for :TOhtml
 let g:html_use_css = 1

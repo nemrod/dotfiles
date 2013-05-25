@@ -7,8 +7,8 @@ URxvt*saveLines: 1024
 
 URxvt*perl-ext: default,url-select
 URxvt*keysym.M-u: perl:url-select:select_next
-URxvt*urlLauncher: chromium
-URxvt*underlineURLs: true
+URxvt*url-select.launcher: chromium
+URxvt*url-select.underline: true
 
 URxvt*foreground: #bebebe
 URxvt*background: #212121

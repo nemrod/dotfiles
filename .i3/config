@@ -11,7 +11,7 @@
 
 set $mod Mod1
 
-#TODO:move between xrandr outputs http://i3wm.org/docs/userguide.html#_changing_named_workspaces_moving_to_workspaces
+# TODO: move between xrandr outputs http://i3wm.org/docs/userguide.html#_changing_named_workspaces_moving_to_workspaces
 # float mplayer
 #for_window [class="MPlayer"] floating enable
 
@@ -32,7 +32,7 @@ bar {
         statusline #cccccc
     }
     font -*-*-medium-r-normal--10-*-*-*-*-*-iso10646-*
-# get a better font, oh my god
+	# TODO: get a better font, oh my god
 }
 
 # set background color to match terminal background
@@ -40,7 +40,7 @@ client.background #212121
 
 # font for window titles. ISO 10646 = Unicode
 font -*-*-medium-r-normal--10-*-*-*-*-*-iso10646-*
-# get a better font, oh my god
+# TODO: get a better font, oh my god
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -163,9 +163,9 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status
-}
+#bar {
+#        status_command i3status
+#}
 
 #######################################################################
 # automatically start i3-config-wizard to offer the user to create a

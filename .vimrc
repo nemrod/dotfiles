@@ -1,12 +1,16 @@
 set nocompatible
 
+" less css syntax
+autocmd BufNewFile,BufRead *.less set filetype=less
+
 set encoding=utf-8
 
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
 set autoindent
 set cindent
-set noexpandtab
+set expandtab
 filetype plugin indent on
 
 syntax on
@@ -80,4 +84,8 @@ function Aao()
 	:%s/&Aring;\C/Å/g
 	:%s/&Auml;\C/Ä/g
 	:%s/&Ouml;\C/Ö/g
+endfunction
+
+function CppCompile()
+	:!g++ % -o test && ./test
 endfunction

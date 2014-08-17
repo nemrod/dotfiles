@@ -1,0 +1,26 @@
+# home button, next to power
+"chromium"
+    XF86AudioMedia
+
+# fn+f1
+"systemctl suspend"
+    XF86Suspend
+
+# fn+f8
+#""
+#    XF86Display
+
+# fn+f3
+#""
+#    XF86Battery
+
+#    XF86AudioPrev
+#    XF86AudioStop
+#    XF86AudioPlay
+#    XF86AudioNext
+"pactl set-sink-mute $(pactl list short sinks | cut -f1) toggle"
+    XF86AudioMute
+"pactl set-sink-volume $(pactl list short sinks | cut -f1) -- -10%"
+    XF86AudioLowerVolume
+"pactl set-sink-volume $(pactl list short sinks | cut -f1) -- +10%"
+    XF86AudioRaiseVolume

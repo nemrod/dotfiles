@@ -8,6 +8,7 @@ alias blankcd='cdrecord dev=/dev/cdrom blank=fast'
 alias burncd='cdrecord dev=/dev/cdrom -overburn -v'
 alias unzip_all='for f in *.zip; do dir="$f:r"; [ -d "$dir" ] || unzip -d "$dir" "$f"; done'
 alias unrar_all='for f in *.rar; do dir="$f:r"; [ -d "$dir" ] || (mkdir "$dir"; cd "./$dir"; unrar x "../$f"; cd ..); done'
+alias lock="i3lock -dc 000000"
 
 if echo $LANG $LC_ALL $LC_CTYPE | egrep -q 'UTF-?8'; then
 	alias man='LC_CTYPE=C man'

@@ -26,11 +26,15 @@ font pango:DejaVu Sans Mono 7
 # switch to current workspace to go to previous
 workspace_auto_back_and_forth yes
 
+# window-specific commands
+for_window [instance="crx_nckgahadagoaajjgafhacjanaoiihapd"] floating enable # hangouts
+#for_window [class="Skype"] floating enable
+
 # i3bar
 bar {
     status_command i3status --config ~/.i3/i3status.conf
-    mode hide
-    tray_output LVDS-0
+    mode hide # XXX
+    tray_output LVDS-0 # XXX
     colors {
         background #111111
         statusline #cccccc

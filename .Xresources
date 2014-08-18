@@ -5,10 +5,30 @@ URxvt*saveLines: 1024
 !URxvt*urgentOnBell: true
 !URxvt*visualBell: true
 
-URxvt*perl-ext: default,url-select
+URxvt*perl-ext: default,url-select,vtwheel,font-size
+
 URxvt*keysym.M-u: perl:url-select:select_next
 URxvt*url-select.launcher: chromium
 URxvt*url-select.underline: true
+
+URxvt*iso14755: false
+URxvt*iso14755_52: false
+URxvt*keysym.C-Up: perl:font-size:increase
+URxvt*keysym.C-Down: perl:font-size:decrease
+URxvt*keysym.C-S-Up: perl:font-size:incglobal
+URxvt*keysym.C-S-Down: perl:font-size:decglobal
+
+Xft.dpi: 96
+Xft.antialias: true
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.hinting: true
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
+
+URxvt.font: xft:Source Code Pro:light:size=10
+URxvt.boldFont: xft:Source Code Pro:medium:size=10
+URxvt.letterSpace: -2
 
 URxvt*foreground: #bebebe
 URxvt*background: #212121

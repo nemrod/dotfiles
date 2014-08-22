@@ -33,8 +33,8 @@ for_window [instance="crx_nckgahadagoaajjgafhacjanaoiihapd"] floating enable # h
 # i3bar
 bar {
     status_command i3status --config ~/.i3/i3status.conf
-    mode hide # XXX
-    tray_output LVDS-0 # XXX
+    #mode hide # XXX
+    #tray_output LVDS-0
     colors {
         background #111111
         statusline #cccccc

@@ -28,6 +28,9 @@ fcitx
 # run xbindkeys to get multimedia keys
 xbindkeys
 
+# run redshift
+redshift-gtk &
+
 # start pulse-audio
 start-pulseaudio-x11
 

@@ -1,0 +1,15 @@
+alias blankcd='cdrecord dev=/dev/cdrom blank=fast'
+alias burncd='cdrecord dev=/dev/cdrom -overburn -v'
+alias unzip_all='for f in *.zip; do dir="$f:r"; [ -d "$dir" ] || unzip -d "$dir" "$f"; done'
+alias unrar_all='for f in *.rar; do dir="$f:r"; [ -d "$dir" ] || (mkdir "$dir"; cd "./$dir"; unrar x "../$f"; cd ..); done'
+alias lock="i3lock -dc 000000"
+
+export EDITOR=vim
+export VISUAL=$EDITOR
+export VDPAU_DRIVER=nvidia
+export PATH=$PATH:~/.bin
+
+export WINEARCH=win32
+export WINEPREFIX=$HOME/.win32
+
+set -o vi

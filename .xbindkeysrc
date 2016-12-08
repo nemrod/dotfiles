@@ -20,7 +20,7 @@
 #    XF86AudioNext
 "pactl set-sink-mute $(pactl list short sinks | cut -f1) toggle"
     XF86AudioMute
-"pactl set-sink-volume $(pactl list short sinks | cut -f1) -- -10%"
+"pactl set-sink-volume $(pactl list short sinks | cut -f1) -10%"
     XF86AudioLowerVolume
-"pactl set-sink-volume $(pactl list short sinks | cut -f1) -- +10%"
+"pactl set-sink-volume $(pactl list short sinks | cut -f1) +10%"
     XF86AudioRaiseVolume

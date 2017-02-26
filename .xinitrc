@@ -1,38 +1,32 @@
 #!/bin/sh
 
-# merge in defaults and keymaps
+# load Xresources
 userresources=$HOME/.Xresources
-usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
-sysmodmap=/etc/X11/xinit/.Xmodmap
+[ -r "$sysresources" ] && xrdb -merge "$sysresources"
+[ -r "$userresources" ] && xrdb -merge "$userresources"
 
-[[ -f $sysresources ]] && xrdb -merge $sysresources
-[[ -f $sysmodmap ]] && xmodmap $sysmodmap
-[[ -f "$userresources" ]] && xrdb -merge "$userresources"
-[[ -f "$usermodmap" ]] && xmodmap "$usermodmap"
-
-# start some nice programs
-if [ -d /etc/X11/xinit/xinitrc.d ] ; then
-	for f in /etc/X11/xinit/xinitrc.d/* ; do
-		[ -x "$f" ] && . "$f"
-	done
-	unset f
-fi
+# run some default system scripts
+for f in /etc/X11/xinit/xinitrc.d/* ; do
+	[ -x "$f" ] && . "$f"
+done
+unset f
 
 # add tray icons for and start fcitx
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS="@im=fcitx"
-fcitx
+if type fcitx 2> /dev/null; then
+	export GTK_IM_MODULE=fcitx
+	export QT_IM_MODULE=fcitx
+	export XMODIFIERS="@im=fcitx"
+	fcitx
+fi
 
-# run xbindkeys to get multimedia keys
-xbindkeys
+type xbindkeys 2> /dev/null && [ -r $HOME/.xbindkeysrc ] && xbindkeys
+type redshift-gtk 2> /dev/null && redshift-gtk &
+type start-pulseaudio-x11 2> /dev/null && start-pulseaudio-x11
+type xautolock 2> /dev/null && xautolock -detectsleep -time 3 -locker $HOME/.bin/lock &
 
-# run redshift
-redshift-gtk &
+# merge base and local i3 config
+[ -r $HOME/.i3/config.base ] && cp $HOME/.i3/config.base $HOME/.i3/config
+[ -r $HOME/.i3/config.local ] && cat $HOME/.i3/config.local >> $HOME/.i3/config
 
-# start pulse-audio
-start-pulseaudio-x11
-
-# start i3 window manager
 exec i3

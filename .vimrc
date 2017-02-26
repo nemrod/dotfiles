@@ -1,41 +1,30 @@
 set nocompatible
 
-" less css syntax
-autocmd BufNewFile,BufRead *.less set filetype=less
-
 set encoding=utf-8
 
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
 set autoindent
 set cindent
-set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set noexpandtab
 filetype plugin indent on
 
 syntax on
-" Pathogen?
-
-set nofoldenable
-set foldmethod=indent
-set foldminlines=5
-set foldlevel=1
 
 nnoremap / /\v
 vnoremap / /\v
 set ignorecase
 set smartcase
-"set gdefault
 set incsearch
 set showmatch
 set hlsearch
-"nnoremap <tab> %
-"vnoremap <tab> %
+nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
 
 set wrap
 set linebreak
 set formatoptions=qrn1
-"set colorcolumn=85
+set colorcolumn=250
 
 nnoremap j gj
 nnoremap k gk
@@ -43,31 +32,17 @@ nnoremap k gk
 set wildmenu
 set wildmode=list:longest,full
 
-"set tags=tags;/
-
 set backspace=indent,eol,start
 set scrolloff=3
-set showmode
-set showcmd
-set hidden
 set visualbell
-""set cursorline
 set ttyfast
 set number
 set ruler
-"set relativenumber
-"set undofile
-set background=light
+set background=dark
 set mouse=r
 set modelines=0
 
 set laststatus=2
-set statusline=%F\ %y%m%=\ %{strlen(&fenc)?'['.&fenc.']':''}[%{&ff}]\ %c%V\ %l\,%L\ %P
-
-" Some settings for :TOhtml
-let g:html_use_css = 1
-let g:html_use_xhtml = 1
-let g:html_number_lines = 1
 
 " Current directory follows the file being edited, unless it's a remote file
 if exists(":lcd")
@@ -76,16 +51,36 @@ else
 	autocmd BufEnter * if bufname("") !~ '^[[:alnum:]]*://' | cd %:p:h | endif
 endif
 
-" Replace HMTL åäö with the real ones
-function Aao()
-	:%s/&aring;\C/å/g
-	:%s/&auml;\C/ä/g
-	:%s/&ouml;\C/ö/g
-	:%s/&Aring;\C/Å/g
-	:%s/&Auml;\C/Ä/g
-	:%s/&Ouml;\C/Ö/g
-endfunction
+if empty(glob('~/.vim/autoload/plug.vim'))
+	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-function CppCompile()
-	:!g++ % -o test && ./test
-endfunction
+call plug#begin('~/.vim/bundle')
+Plug 'chriskempson/base16-vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-syntastic/syntastic'
+Plug 'vim-airline/vim-airline'
+call plug#end()
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_loc_list_height = 5
+
+let g:airline#extensions#hunks#non_zero_only = 1
+
+let g:ctrlp_show_hidden = 1
+
+set updatetime=250
+
+if filereadable(expand("~/.vimrc_background"))
+	let base16colorspace = 256
+	source ~/.vimrc_background
+endif
+
+if filereadable(glob('~/.vimrc.local'))
+	source ~/.vimrc.local
+endif

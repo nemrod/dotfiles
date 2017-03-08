@@ -24,7 +24,6 @@ nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
 set wrap
 set linebreak
 set formatoptions=qrn1
-set colorcolumn=250
 
 nnoremap j gj
 nnoremap k gk

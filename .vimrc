@@ -73,6 +73,9 @@ let g:syntastic_loc_list_height = 5
 let g:airline#extensions#hunks#non_zero_only = 1
 
 let g:ctrlp_show_hidden = 1
+if executable('rg')
+	let g:ctrlp_user_command = ['.git', 'cd %s; rg --files', 'find %s -type f']
+endif
 
 set updatetime=250
 

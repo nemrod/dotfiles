@@ -5,8 +5,9 @@ alias ll='l -l'
 alias la='l -a'
 alias lh='l -lh'
 alias lah='l -lah'
-alias grepr="grep --color=always -Rin"
+alias grepr='grep --color=always -Rin'
 alias lessc='less -R'
+alias rg='rg -Sn --color=always --no-heading'
 
 # Variables
 export LC_CTYPE='en_US.UTF-8'

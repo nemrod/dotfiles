@@ -40,6 +40,7 @@ set ruler
 set background=dark
 set mouse=r
 set modelines=0
+set hidden
 
 set laststatus=2
 

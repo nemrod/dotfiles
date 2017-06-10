@@ -1,7 +1,7 @@
 set $mod Mod1
 
 # look
-font pango:DejaVu Sans Mono 7
+font pango:Source Code Pro 9
 
 # status bar
 bar {

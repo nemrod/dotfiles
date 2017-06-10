@@ -12,6 +12,8 @@ filetype plugin indent on
 
 syntax on
 
+cmap w!! w !sudo tee > /dev/null %
+
 nnoremap / /\v
 vnoremap / /\v
 set ignorecase
@@ -62,6 +64,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'vim-airline/vim-airline'
+Plug 'sirtaj/vim-openscad'
 call plug#end()
 
 let g:syntastic_always_populate_loc_list = 1

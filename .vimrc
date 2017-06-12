@@ -30,6 +30,8 @@ set formatoptions=qrn1
 nnoremap j gj
 nnoremap k gk
 
+let mapleader = '-'
+
 set wildmenu
 set wildmode=list:longest,full
 
@@ -46,11 +48,33 @@ set hidden
 
 set laststatus=2
 
+set updatetime=500
+
 " Current directory follows the file being edited, unless it's a remote file
 if exists(":lcd")
 	autocmd BufEnter * if bufname("") !~ '^[[:alnum:]]*://' | silent! lcd %:p:h | endif
 else
 	autocmd BufEnter * if bufname("") !~ '^[[:alnum:]]*://' | cd %:p:h | endif
+endif
+
+if has('cscope')
+	set cscopeverbose
+	set cscopetag
+	if filereadable('cscope.out')
+		cs add cscope.out
+	elseif $CSCOPE_DB != ''
+		cs add $CSCOPE_DB
+	endif
+
+	nmap <Leader>cs :cs find s <C-R>=expand("<cword>")<CR><CR>
+	nmap <Leader>cg :cs find g <C-R>=expand("<cword>")<CR><CR>
+	nmap <Leader>cd :cs find d <C-R>=expand("<cword>")<CR><CR>
+	nmap <Leader>cc :cs find c <C-R>=expand("<cword>")<CR><CR>
+	nmap <Leader>ct :cs find t <C-R>=expand("<cword>")<CR><CR>
+	nmap <Leader>ce :cs find e <C-R>=expand("<cword>")<CR><CR>
+	nmap <Leader>cf :cs find f <C-R>=expand("<cfile>")<CR><CR>
+	nmap <Leader>ci :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+	nmap <Leader>ca :cs find a <C-R>=expand("<cword>")<CR><CR>
 endif
 
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -60,11 +84,14 @@ endif
 
 call plug#begin('~/.vim/bundle')
 Plug 'chriskempson/base16-vim'
-Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'vim-syntastic/syntastic'
 Plug 'vim-airline/vim-airline'
 Plug 'sirtaj/vim-openscad'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-syntastic/syntastic'
+if filereadable(glob('~/.vimrc.localplugins'))
+	source ~/.vimrc.localplugins
+endif
 call plug#end()
 
 let g:syntastic_always_populate_loc_list = 1
@@ -79,8 +106,6 @@ let g:ctrlp_show_hidden = 1
 if executable('rg')
 	let g:ctrlp_user_command = ['.git', 'cd %s; rg --files', 'find %s -type f']
 endif
-
-set updatetime=250
 
 if filereadable(expand("~/.vimrc_background"))
 	let base16colorspace = 256

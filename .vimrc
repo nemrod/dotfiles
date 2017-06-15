@@ -86,7 +86,6 @@ call plug#begin('~/.vim/bundle')
 Plug 'chriskempson/base16-vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'sirtaj/vim-openscad'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-syntastic/syntastic'
 if filereadable(glob('~/.vimrc.localplugins'))

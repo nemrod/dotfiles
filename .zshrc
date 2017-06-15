@@ -7,7 +7,7 @@ alias lh='l -lh'
 alias lah='l -lah'
 alias grepr='grep --color=always -Rin'
 alias lessc='less -R'
-alias rg='rg -Sn --color=always --no-heading'
+alias rg='rg -LSn --color=always --no-heading'
 
 # Variables
 export LC_CTYPE='en_US.UTF-8'

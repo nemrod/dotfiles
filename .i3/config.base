@@ -5,7 +5,7 @@ font pango:Source Code Pro 9
 
 # status bar
 bar {
-    status_command i3status
+    status_command i3blocks
     tray_output primary
     colors {
         background #111111

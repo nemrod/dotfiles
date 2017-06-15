@@ -1,0 +1,6 @@
+#!/bin/sh
+
+[ "$(pactl list short sinks | cut -f2 | cut -d. -f4)" = "analog-stereo" ] && echo -n "Analogue " || echo -n "HDMI "
+pactl list sinks | grep -P '\tVolume:' | sed -e 's/.*\/ \+\([0-9]\+%\).*/\1/g'
+echo
+[ -n "$(pactl list sinks | grep 'Mute: yes')" ] && echo \#F7CA88 || echo

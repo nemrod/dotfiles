@@ -13,10 +13,6 @@ bar {
     }
 }
 
-# window-specific
-for_window [instance="crx_nckgahadagoaajjgafhacjanaoiihapd"] floating enable # hangouts
-#for_window [class="Skype"] floating enable
-
 # program execution
 bindsym $mod+x exec --no-startup-id $HOME/.bin/lock
 bindsym $mod+Return exec --no-startup-id i3-sensible-terminal

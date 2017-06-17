@@ -1,0 +1,30 @@
+#!/bin/env python
+
+# This is a helper script to be able to create 'replacable' notifications, e.g.
+# for notifying about brightness or volume changes; if you just create a new
+# notification for every key press you'll have a bunch of them. This lets you
+# send in an ID, the old notification will be killed and the new one
+# will take it's place, and all's right with the world.
+
+# Here's an example shellscript for when pressing a key to change brightness:
+# notification_text="$(printf '★　%.0s' {1..10} | sed -e "s/★　/☆　/g$(echo $(xbacklight) / 10 + 1 | bc)")"
+# notification_file=$HOME/.notification_backlight_id
+# [ -r $notification_file ] && notification_id=$(cat $notification_file)
+# [ -z $notification_id ] && notification_id=0
+# notify-replacable backlight Backlight "$notification_text" $notification_id > $notification_file
+
+import dbus
+import sys
+
+domain = 'org.freedesktop.Notifications'
+path = '/org/freedesktop/Notifications'
+notify = dbus.Interface(dbus.SessionBus().get_object(domain, path), domain)
+
+if len(sys.argv) > 3: 
+    application = sys.argv[1]
+    replace_id = 0 if len(sys.argv) < 5 else sys.argv[4]
+    summary = sys.argv[2]
+    body = sys.argv[3]
+    timeout = -1
+    urgency = 0
+    print(notify.Notify(application, replace_id, '', summary, body, '', {'urgency': dbus.Byte(urgency)}, timeout))

@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# This sets a Wacom tablet to map to the currently active screen in a multimonitor setup,
+# and also fixes the aspect ratio; all the tablets I've used are 16:10 while most
+# monitors are an unfortunate 16:9.
+#
+# It's written with i3 in mind, I'm sure other decent window managers provide
+# their own ways of getting the currently active screen.
+#
+# This script will have to be called when switching between screens; in i3 for example
+# you can do that either by subscribing to the workspace event or by simply binding
+# the workspace commands to also run this script.
+
+STYLUS=$(xsetwacom --list devices | sed -Ene 's/.*id: ([0-9]+).*type: STYLUS.*/\1/p')
+TOUCH=$(xsetwacom --list devices | sed -Ene 's/.*id: ([0-9]+).*type: TOUCH.*/\1/p')
+
+SCREEN=$(i3-msg -t get_workspaces | jq -r '.[] | select(.focused).output')
+read WIDTH HEIGHT <<< $(xrandr -q --current | sed -Ene "s/^${SCREEN}"' connected [a-z]* ?([0-9]+)x([0-9]+).*/\1 \2/p')
+
+xsetwacom --set "$STYLUS" ResetArea
+read AREAX AREAY <<< "$(xsetwacom --get "$STYLUS" Area | cut -d' ' -f3,4)"
+
+RATIOAREAY=$((AREAX * HEIGHT / WIDTH))
+RATIOAREAX=$((AREAY * WIDTH / HEIGHT))
+
+if [ "$AREAY" -gt "$RATIOAREAY" ]; then
+	AREAY="$RATIOAREAY"
+else
+	AREAX="$RATIOAREAX"
+fi
+
+xsetwacom --set "$STYLUS" Area 0 0 "$AREAX" "$AREAY"
+xsetwacom --set "$STYLUS" MapToOutput "$SCREEN"
+
+xsetwacom --set "$STYLUS" Rotate half # will 'flip' the tablet; I'm left-handed
+
+xsetwacom --set "$TOUCH" Touch off # no icky touch getting in the way please

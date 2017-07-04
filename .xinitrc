@@ -24,6 +24,7 @@ type xbindkeys 2> /dev/null && [ -r $HOME/.xbindkeysrc ] && xbindkeys
 type redshift-gtk 2> /dev/null && redshift-gtk &
 type start-pulseaudio-x11 2> /dev/null && start-pulseaudio-x11
 type xautolock 2> /dev/null && xautolock -detectsleep -time 3 -locker $HOME/.bin/lock &
+type easystroke 2> /dev/null && easystroke
 
 # merge base and local i3 config
 [ -r $HOME/.i3/config.base ] && cp $HOME/.i3/config.base $HOME/.i3/config

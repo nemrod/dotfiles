@@ -1,0 +1,28 @@
+#!/bin/bash
+
+interface=$(find -L /sys/class/net/* -maxdepth 1 -type d -name wireless | head -n1 | cut -d'/' -f5)
+[ -z "$interface" ] && exit 1
+
+if [ "$(cat /sys/class/net/$interface/operstate)" = 'down' ]; then
+	echo "down"
+	echo "down"
+	echo "#AB4642"
+	exit 0
+fi
+
+ip=$(ip address show dev "$interface" | sed -Ene 's/.*inet ([0-9\.]*).*/\1/p')
+ssid=$(iwgetid -r "$interface")
+quality=$(cat /proc/net/wireless | grep "$interface" | awk '{ print int($3 * 100 / 70) }')
+
+echo "$ssid $quality% $ip"
+echo "$ssid $quality% $ip"
+
+if [[ $quality -ge 80 ]]; then
+    echo "#A1B56C"
+elif [[ $quality -ge 60 ]]; then
+    echo "#C7CA88"
+elif [[ $quality -ge 40 ]]; then
+    echo "#F7CA88"
+else
+    echo "#AB4642"
+fi

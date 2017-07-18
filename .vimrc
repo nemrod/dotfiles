@@ -11,6 +11,7 @@ set noexpandtab
 filetype plugin indent on
 
 syntax on
+let c_comment_strings=1
 
 cmap w!! w !sudo tee > /dev/null %
 
@@ -41,13 +42,17 @@ set visualbell
 set ttyfast
 set number
 set ruler
+set showcmd
 set background=dark
 set mouse=r
 set modelines=0
 set hidden
+set display=truncate
 
 set laststatus=2
 
+set ttimeout
+set ttimeoutlen=100
 set updatetime=500
 
 " Current directory follows the file being edited, unless it's a remote file
@@ -55,6 +60,11 @@ if exists(":lcd")
 	autocmd BufEnter * if bufname("") !~ '^[[:alnum:]]*://' | silent! lcd %:p:h | endif
 else
 	autocmd BufEnter * if bufname("") !~ '^[[:alnum:]]*://' | cd %:p:h | endif
+endif
+
+if !exists(":DiffOrig")
+	command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+				\ | wincmd p | diffthis
 endif
 
 if has('cscope')
@@ -88,10 +98,17 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-syntastic/syntastic'
+Plug 'mbbill/undotree'
 if filereadable(glob('~/.vimrc.localplugins'))
 	source ~/.vimrc.localplugins
 endif
 call plug#end()
+
+nmap <Leader>ut :UndotreeToggle<CR>
+if has("persistent_undo")
+	set undodir=~/.vim_undo/
+	set undofile
+endif
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1

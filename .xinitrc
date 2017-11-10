@@ -30,4 +30,6 @@ type easystroke 2> /dev/null && easystroke &
 [ -r $HOME/.i3/config.base ] && cp $HOME/.i3/config.base $HOME/.i3/config
 [ -r $HOME/.i3/config.local ] && cat $HOME/.i3/config.local >> $HOME/.i3/config
 
+type termite 2> /dev/null && TERMINAL=termite
+
 exec i3

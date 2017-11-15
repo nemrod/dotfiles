@@ -78,7 +78,8 @@ fi
 
 # Plugins
 source ~/.zplug/init.zsh
-zplug "zsh-users/zsh-history-substring-search"
+zplug 'zsh-users/zsh-history-substring-search'
+zplug 'zplug/zplug', hook-build: 'zplug --self-manage'
 if ! zplug check --verbose; then
 	printf "Install? [y/N]: "
 	if read -q; then

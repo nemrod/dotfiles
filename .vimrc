@@ -55,13 +55,6 @@ set ttimeout
 set ttimeoutlen=100
 set updatetime=500
 
-" Current directory follows the file being edited, unless it's a remote file
-if exists(":lcd")
-	autocmd BufEnter * if bufname("") !~ '^[[:alnum:]]*://' | silent! lcd %:p:h | endif
-else
-	autocmd BufEnter * if bufname("") !~ '^[[:alnum:]]*://' | cd %:p:h | endif
-endif
-
 if !exists(":DiffOrig")
 	command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 				\ | wincmd p | diffthis
@@ -99,6 +92,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-syntastic/syntastic'
 Plug 'mbbill/undotree'
+Plug 'airblade/vim-rooter'
 if filereadable(glob('~/.vimrc.localplugins'))
 	source ~/.vimrc.localplugins
 endif
@@ -118,9 +112,13 @@ let g:syntastic_loc_list_height = 5
 
 let g:airline#extensions#hunks#non_zero_only = 1
 
+let g:rooter_patterns = ['.git/', '.git']
+let g:rooter_change_directory_for_non_project_files = 'current'
+
 let g:ctrlp_show_hidden = 1
+let g:ctrlp_working_path_mode = 'rw'
 if executable('rg')
-	let g:ctrlp_user_command = ['.git', 'cd %s; rg --files', 'find %s -type f']
+	let g:ctrlp_user_command = 'rg --files'
 endif
 
 if filereadable(expand("~/.vimrc_background"))

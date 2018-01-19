@@ -90,9 +90,9 @@ Plug 'chriskempson/base16-vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-gitgutter'
-Plug 'vim-syntastic/syntastic'
 Plug 'mbbill/undotree'
 Plug 'airblade/vim-rooter'
+Plug 'w0rp/ale'
 if filereadable(glob('~/.vimrc.localplugins'))
 	source ~/.vimrc.localplugins
 endif
@@ -104,13 +104,12 @@ if has("persistent_undo")
 	set undofile
 endif
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_loc_list_height = 5
-
 let g:airline#extensions#hunks#non_zero_only = 1
+
+let g:ale_list_window_size = 5
+let g:ale_open_list = 1
+nmap <silent> [e <Plug>(ale_previous_wrap)
+nmap <silent> ]e <Plug>(ale_next_wrap)
 
 let g:rooter_patterns = ['.git/', '.git']
 let g:rooter_change_directory_for_non_project_files = 'current'

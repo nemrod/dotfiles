@@ -8,47 +8,46 @@ alias lah='l -lah'
 alias grepr='grep --color=always -Rin'
 alias lessc='less -R'
 alias rg='rg -LSn --color=always --no-heading'
+alias history='fc -il 1'
 
-# Variables
+# Environment
 export LC_CTYPE='en_US.UTF-8'
 export PROMPT='%K{18} %n@%m %~ %# %k '
 export RPROMPT='%(?..%K{18}[%?]%k)'
-export EDITOR=vim
-export VISUAL=$EDITOR
+export EDITOR='vim'
+export VISUAL="$EDITOR"
+export BROWSER='qutebrowser'
 export PATH="$HOME/.bin:$PATH:/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/games"
 
 eval $(dircolors --sh)
 
-# History
-[ -z "$HISTFILE" ] && HISTFILE=$HOME/.zsh_history
+# Functions
+function cdg {
+	[ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = "true" ] && cd -- "$(git rev-parse --show-toplevel)"
+}
 
-HISTSIZE=10000
+# History
+[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
+
+HISTSIZE=11000
 SAVEHIST=10000
 
-case $HIST_STAMPS in
-	"mm/dd/yyyy") alias history='fc -fl 1' ;;
-	"dd.mm.yyyy") alias history='fc -El 1' ;;
-	"yyyy-mm-dd") alias history='fc -il 1' ;;
-	*) alias history='fc -l 1' ;;
-esac
-
-setopt append_history
 setopt extended_history
 setopt hist_expire_dups_first
 setopt hist_find_no_dups
-setopt hist_ignore_dups # ignore duplication command history list
+setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt hist_verify
-setopt inc_append_history
-setopt share_history # share command history data
+setopt share_history
 
 # Options
+bindkey -v
+set -o vi
+
 setopt AUTO_CD \
 	LIST_TYPES \
 	MARK_DIRS \
 	EXTENDED_GLOB
-
-set -o vi
 
 # Completion
 autoload -U compinit

@@ -94,6 +94,8 @@ Plug 'mbbill/undotree'
 Plug 'airblade/vim-rooter'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
+Plug 'edkolev/promptline.vim'
+Plug 'edkolev/tmuxline.vim'
 if filereadable(glob('~/.vimrc.localplugins'))
 	source ~/.vimrc.localplugins
 endif

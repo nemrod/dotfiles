@@ -93,6 +93,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'mbbill/undotree'
 Plug 'airblade/vim-rooter'
 Plug 'w0rp/ale'
+Plug 'tpope/vim-fugitive'
 if filereadable(glob('~/.vimrc.localplugins'))
 	source ~/.vimrc.localplugins
 endif

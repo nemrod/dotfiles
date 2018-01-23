@@ -89,6 +89,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'chriskempson/base16-vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'mbbill/undotree'
 Plug 'airblade/vim-rooter'
@@ -108,6 +109,8 @@ if has("persistent_undo")
 endif
 
 let g:airline#extensions#hunks#non_zero_only = 1
+let g:airline_theme = 'badwolf'
+let g:airline_powerline_fonts = 1
 
 let g:ale_list_window_size = 5
 let g:ale_open_list = 1

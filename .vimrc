@@ -1,17 +1,12 @@
-set nocompatible
-
 set encoding=utf-8
 
 set autoindent
-set cindent
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-set noexpandtab
 filetype plugin indent on
 
 syntax on
-let c_comment_strings=1
 
 cmap w!! w !sudo tee > /dev/null %
 
@@ -24,8 +19,6 @@ set showmatch
 set hlsearch
 nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
 
-set wrap
-set linebreak
 set formatoptions=qrn1
 
 nnoremap j gj
@@ -44,8 +37,7 @@ set number
 set ruler
 set showcmd
 set background=dark
-set mouse=r
-set modelines=0
+set nomodeline
 set hidden
 set display=truncate
 

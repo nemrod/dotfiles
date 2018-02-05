@@ -34,6 +34,7 @@ set scrolloff=3
 set visualbell
 set ttyfast
 set number
+set relativenumber
 set ruler
 set showcmd
 set background=dark
@@ -96,6 +97,7 @@ call plug#end()
 
 nmap <Leader>ut :UndotreeToggle<CR>
 if has("persistent_undo")
+	silent !mkdir -p ~/.vim_undo >/dev/null 2>&1
 	set undodir=~/.vim_undo/
 	set undofile
 endif

@@ -34,7 +34,6 @@ set scrolloff=3
 set visualbell
 set ttyfast
 set number
-set relativenumber
 set ruler
 set showcmd
 set background=dark
@@ -107,7 +106,6 @@ let g:airline_theme = 'badwolf'
 let g:airline_powerline_fonts = 1
 
 let g:ale_list_window_size = 5
-let g:ale_open_list = 1
 nmap <silent> [e <Plug>(ale_previous_wrap)
 nmap <silent> ]e <Plug>(ale_next_wrap)
 

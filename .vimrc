@@ -52,26 +52,6 @@ if !exists(":DiffOrig")
 				\ | wincmd p | diffthis
 endif
 
-if has('cscope')
-	set cscopeverbose
-	set cscopetag
-	if filereadable('cscope.out')
-		cs add cscope.out
-	elseif $CSCOPE_DB != ''
-		cs add $CSCOPE_DB
-	endif
-
-	nmap <Leader>cs :cs find s <C-R>=expand("<cword>")<CR><CR>
-	nmap <Leader>cg :cs find g <C-R>=expand("<cword>")<CR><CR>
-	nmap <Leader>cd :cs find d <C-R>=expand("<cword>")<CR><CR>
-	nmap <Leader>cc :cs find c <C-R>=expand("<cword>")<CR><CR>
-	nmap <Leader>ct :cs find t <C-R>=expand("<cword>")<CR><CR>
-	nmap <Leader>ce :cs find e <C-R>=expand("<cword>")<CR><CR>
-	nmap <Leader>cf :cs find f <C-R>=expand("<cfile>")<CR><CR>
-	nmap <Leader>ci :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-	nmap <Leader>ca :cs find a <C-R>=expand("<cword>")<CR><CR>
-endif
-
 if empty(glob('~/.vim/autoload/plug.vim'))
 	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
@@ -89,6 +69,7 @@ Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'edkolev/promptline.vim'
 Plug 'edkolev/tmuxline.vim'
+Plug 'tpope/vim-unimpaired'
 if filereadable(glob('~/.vimrc.localplugins'))
 	source ~/.vimrc.localplugins
 endif
@@ -108,6 +89,7 @@ let g:airline_powerline_fonts = 1
 let g:ale_list_window_size = 5
 nmap <silent> [e <Plug>(ale_previous_wrap)
 nmap <silent> ]e <Plug>(ale_next_wrap)
+let g:ale_open_list = 0
 
 let g:rooter_patterns = ['.git/', '.git']
 let g:rooter_change_directory_for_non_project_files = 'current'

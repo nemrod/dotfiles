@@ -1,6 +1,11 @@
 config.load_autoconfig()
 
 c.tabs.background = True
+c.content.autoplay = False
+c.content.pdfjs = True
+c.downloads.location.directory = '~'
+c.editor.command = ['termite', '-e', 'vim {}']
+c.hints.chars = 'aoeuidhtns'
 
 config.bind(';D', 'hint links spawn transmission-remote -a {hint-url}')
 config.bind(';P', 'hint links spawn mpv {hint-url}')

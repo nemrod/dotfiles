@@ -80,6 +80,7 @@ fi
 # Plugins
 source ~/.zplug/init.zsh
 zplug 'zsh-users/zsh-history-substring-search'
+zplug 'romkatv/powerlevel10k', as:'theme', depth:1
 zplug 'zplug/zplug', hook-build: 'zplug --self-manage'
 if ! zplug check --verbose; then
 	printf "Install? [y/N]: "
@@ -91,6 +92,8 @@ zplug load
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
@@ -100,3 +103,6 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 
 # Local
 [ -r "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
+
+# p10k
+[ -r "$HOME/.p10k.zsh" ] && source "$HOME/.p10k.zsh"

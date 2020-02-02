@@ -1,4 +1,5 @@
 ln -s $HOME/.dotfiles/.zshrc $HOME
+ln -s $HOME/.dotfiles/.p10k.zsh $HOME
 ln -s $HOME/.dotfiles/.vimrc $HOME
 ln -s $HOME/.dotfiles/.tmux.conf $HOME
 ln -s $HOME/.dotfiles/.xinitrc $HOME

@@ -11,7 +11,7 @@ if [ "$(cat /sys/class/net/$interface/operstate)" = 'down' ]; then
 fi
 
 ip=$(ip address show dev "$interface" | sed -Ene 's/.*inet ([0-9\.]*).*/\1/p')
-ssid=$(iwgetid -r "$interface")
+ssid=$(iw dev "$interface" info | grep ssid | cut -d' ' -f2)
 quality=$(cat /proc/net/wireless | grep "$interface" | awk '{ print int($3 * 100 / 70) }')
 
 echo "$ssid $quality% $ip"

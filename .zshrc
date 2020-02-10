@@ -7,7 +7,7 @@ alias lh='l -lh'
 alias lah='l -lah'
 alias grepr='grep --color=always -Rin'
 alias lessc='less -R'
-alias rg='rg -LSn --color=always --no-heading'
+alias rg='rg --follow --column --smart-case --line-number --color=always --no-heading'
 alias history='fc -il 1'
 
 # Environment

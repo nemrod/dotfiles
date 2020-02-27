@@ -31,6 +31,7 @@ set wildmode=list:longest,full
 
 set backspace=indent,eol,start
 set scrolloff=3
+set sidescrolloff=5
 set visualbell
 set ttyfast
 set number
@@ -39,7 +40,7 @@ set showcmd
 set background=dark
 set nomodeline
 set hidden
-set display=truncate
+set display=lastline
 
 set laststatus=2
 
@@ -59,17 +60,21 @@ endif
 
 call plug#begin('~/.vim/bundle')
 Plug 'danielwe/base16-vim'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'airblade/vim-gitgutter'
-Plug 'mbbill/undotree'
-Plug 'airblade/vim-rooter'
-Plug 'w0rp/ale'
-Plug 'tpope/vim-fugitive'
 Plug 'edkolev/promptline.vim'
 Plug 'edkolev/tmuxline.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-rooter'
+Plug 'mbbill/undotree'
+Plug 'w0rp/ale'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-eunuch'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-peekaboo'
+Plug 'junegunn/gv.vim'
 if filereadable(glob('~/.vimrc.localplugins'))
 	source ~/.vimrc.localplugins
 endif
@@ -99,6 +104,16 @@ let g:ctrlp_working_path_mode = 'rw'
 if executable('rg')
 	let g:ctrlp_user_command = 'rg --files'
 endif
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+nnoremap <Leader>rg :RG<CR>
 
 if filereadable(expand("~/.vimrc_background"))
 	let base16colorspace = 256

@@ -19,8 +19,6 @@ export VISUAL="$EDITOR"
 export BROWSER='qutebrowser'
 export PATH="$HOME/.bin:$PATH:/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/games"
 
-[ -r "$HOME/.shell_prompt.sh" ] && source "$HOME/.shell_prompt.sh"
-
 eval $(dircolors --sh)
 
 # Functions

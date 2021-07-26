@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Aliases
 alias ls='ls -FH --color=auto'
 alias l='ls'
@@ -7,8 +14,14 @@ alias lh='l -lh'
 alias lah='l -lah'
 alias grepr='grep --color=always -Rin'
 alias lessc='less -R'
+alias treec='tree -C'
 alias rg='rg --follow --column --smart-case --line-number --color=always --no-heading'
+alias rg='rg --follow --column --smart-case --line-number --no-heading'
+alias rgc='rg --color=always'
 alias history='fc -il 1'
+alias ssh='env TERM=xterm-256color ssh'
+alias vim='gvim -v'
+alias fin='find . -iname'
 
 # Environment
 export LC_CTYPE='en_US.UTF-8'
@@ -18,6 +31,8 @@ export EDITOR='vim'
 export VISUAL="$EDITOR"
 export BROWSER='qutebrowser'
 export PATH="$HOME/.bin:$PATH:/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/games"
+export GOPATH="$HOME/.local/share/go"
+export GPG_TTY=$(tty)
 
 eval $(dircolors --sh)
 
@@ -102,5 +117,5 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 # Local
 [ -r "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
-# p10k
-[ -r "$HOME/.p10k.zsh" ] && source "$HOME/.p10k.zsh"
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

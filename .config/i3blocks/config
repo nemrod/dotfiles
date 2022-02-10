@@ -15,6 +15,12 @@ signal=2
 [battery]
 label=⚡
 interval=30
+instance=0
+
+[battery]
+label=⚡
+interval=30
+instance=1
 
 [wifi]
 label=📶

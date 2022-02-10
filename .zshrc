@@ -25,10 +25,9 @@ alias fin='find . -iname'
 
 # Environment
 export LC_CTYPE='en_US.UTF-8'
-export PROMPT='%K{18} %n@%m %~ %# %k '
-export RPROMPT='%(?..%K{18}[%?]%k)'
 export EDITOR='vim'
 export VISUAL="$EDITOR"
+export TERMINAL='alacritty'
 export BROWSER='qutebrowser'
 export PATH="$HOME/.bin:$PATH:/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/games"
 export GOPATH="$HOME/.local/share/go"

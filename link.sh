@@ -21,3 +21,6 @@ ln -s $HOME/.dotfiles/.config/qutebrowser/config.py $HOME/.config/qutebrowser
 
 mkdir -p $HOME/.config/termite
 ln -s $HOME/.dotfiles/.config/termite/config $HOME/.config/termite
+
+mkdir -p $HOME/.config/alacritty
+ln -s $HOME/.dotfiles/.config/alacritty/alacritty.yml $HOME/.config/alacritty

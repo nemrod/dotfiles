@@ -23,15 +23,22 @@ read AREAX AREAY <<< "$(xsetwacom --get "$STYLUS" Area | cut -d' ' -f3,4)"
 RATIOAREAY=$((AREAX * HEIGHT / WIDTH))
 RATIOAREAX=$((AREAY * WIDTH / HEIGHT))
 
+AREAYFROMTOP=0
+AREAXFROMTOP=0
+
 if [ "$AREAY" -gt "$RATIOAREAY" ]; then
-	AREAY="$RATIOAREAY"
+	#AREAY="$RATIOAREAY"
+	AREAYFROMTOP=$((AREAY-RATIOAREAY))
 else
-	AREAX="$RATIOAREAX"
+	#AREAX="$RATIOAREAX"
+	AREAXFROMTOP=$((AREAX-RATIOAREAX))
 fi
 
-xsetwacom --set "$STYLUS" Area 0 0 "$AREAX" "$AREAY"
+#xsetwacom --set "$STYLUS" Area 0 0 "$AREAX" "$AREAY"
+xsetwacom --set "$STYLUS" Area "$AREAXFROMTOP" "$AREAYFROMTOP" "$AREAX" "$AREAY"
 xsetwacom --set "$STYLUS" MapToOutput "$SCREEN"
 
 xsetwacom --set "$STYLUS" Rotate half # will 'flip' the tablet; I'm left-handed
 
-xsetwacom --set "$TOUCH" Touch off # no icky touch getting in the way please
+#xsetwacom --set "$TOUCH" Touch off # no icky touch getting in the way please
+xinput set-prop 'Wacom Bamboo 2FG 4x5 Finger' 'Device Enabled' 0

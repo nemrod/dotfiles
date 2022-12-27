@@ -27,10 +27,6 @@ type start-pulseaudio-x11 2> /dev/null && start-pulseaudio-x11
 type xautolock 2> /dev/null && xautolock &
 type easystroke 2> /dev/null && easystroke &
 
-# merge base and local i3 config
-[ -r $HOME/.config/i3/config.base ] && cp $HOME/.config/i3/config.base $HOME/.config/i3/config
-[ -r $HOME/.config/i3/config.local ] && cat $HOME/.config/i3/config.local >> $HOME/.config/i3/config
-
 type qutebrowser 2> /dev/null && export BROWSER=qutebrowser
 
 exec i3

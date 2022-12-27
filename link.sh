@@ -7,9 +7,10 @@ ln -s $HOME/.dotfiles/.Xresources $HOME
 ln -s $HOME/.dotfiles/.bin $HOME
 
 mkdir -p $HOME/.config/i3
+mkdir -p $HOME/.config/i3/config.d
 mkdir -p $HOME/.config/i3status
 mkdir -p $HOME/.config/i3blocks
-ln -s $HOME/.dotfiles/.config/i3/config.base $HOME/.config/i3
+ln -s $HOME/.dotfiles/.config/i3/config $HOME/.config/i3
 ln -s $HOME/.dotfiles/.config/i3status/config $HOME/.config/i3status
 ln -s $HOME/.dotfiles/.config/i3blocks/config $HOME/.config/i3blocks
 

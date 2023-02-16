@@ -52,6 +52,9 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
+# sticky
+bindsym $mod+Shift+s sticky toggle
+
 # layout stuff
 bindsym $mod+f fullscreen
 bindsym $mod+w split h

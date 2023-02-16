@@ -83,10 +83,10 @@ compdef skill=killall
 
 # ssh-agent
 if ! pgrep -u $USER ssh-agent > /dev/null; then
-	ssh-agent > ~/.ssh-agent-thing
+	ssh-agent > ~/.cache/ssh-agent-pid
 fi
 if [[ "$SSH_AGENT_PID" == "" ]]; then
-	eval $(<~/.ssh-agent-thing)
+	eval $(<~/.cache/ssh-agent-pid)
 fi
 
 # Plugins
@@ -110,8 +110,8 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
 # Colours
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && [ -s "$BASE16_SHELL/profile_helper.sh" ] && source "$BASE16_SHELL/profile_helper.sh"
 
 # Local
 [ -r "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"

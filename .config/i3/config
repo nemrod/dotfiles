@@ -3,15 +3,7 @@ set $mod Mod1
 # look
 font pango:Source Code Pro 9
 
-# status bar
-bar {
-    status_command i3blocks
-    tray_output primary
-    colors {
-        background #111111
-        statusline #cccccc
-    }
-}
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # program execution
 bindsym $mod+x exec --no-startup-id $HOME/.bin/lock

@@ -1,26 +1,3 @@
-URxvt.termName: rxvt-256color
-URxvt.scrollBar: false
-URxvt.saveLines: 1024
-URxvt.urgentOnBell: true
-URxvt.visualBell: true
-
-URxvt.iso14755: false
-URxvt.iso14755_52: false
-
-URxvt.perl-ext: default,matcher,font-size
-
-URxvt.matcher.launcher: xdg-open
-URxvt.matcher.button: 1
-URxvt.keysym.M-u: matcher:select
-
-URxvt.keysym.C-Up: font-size:increase
-URxvt.keysym.C-Down: font-size:decrease
-URxvt.keysym.C-equal: font-size:reset
-
-URxvt.font: xft:Source Code Pro:light:size=10
-URxvt.boldFont: xft:Source Code Pro:medium:size=10
-URxvt.internalBorder: 1
-
 Xft.dpi: 96
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault

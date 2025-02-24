@@ -2,6 +2,7 @@ set $mod Mod1
 
 # look
 font pango:Source Code Pro 9
+hide_edge_borders smart_no_gaps
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
